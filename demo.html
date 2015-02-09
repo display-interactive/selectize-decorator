@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta charset="utf-8">
+    <title>selectize demo</title>
+    <script src="../webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="selectize-decorator.html">
+    <style>
+        #container {
+            padding-top: 15%;
+            width: 50%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body unresolved>
+
+<div id="container">
+    <h1><code>Selectize with polymer</code> in action:</h1>
+    <form method="GET">
+        <p>
+            <selectize-decorator>
+                <select name="foo" multiple>
+                    <option value=""></option>
+                    <option value="1">1 test</option>
+                    <option value="2">2 test 2</option>
+                    <option value="3">3 3 test</option>
+                </select>
+            </selectize-decorator>
+        </p>
+        <p>
+            <selectize-decorator>
+                <input type="text" name="bar" />
+            </selectize-decorator>
+        </p>
+    </form>
+</div>
+</body>
+</html>

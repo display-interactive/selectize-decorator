@@ -1,0 +1,25 @@
+{
+    "name": "selectize-decorator",
+    "version": "0.0.1",
+    "authors": [
+        "Florian Roy"
+    ],
+    "description": "Selectize decorator with polymer",
+    "main": "element/*",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "keywords": ["Polymer", "web-components", "selectize", "html", "select", "selectbox"],
+    "dependencies": {
+        "polymer": "Polymer/polymer#~0.5.4",
+        "jquery": "latest",
+        "selectize": "latest"
+    },
+    "devDependencies": {
+        "web-component-tester": "*"
+    }
+}
