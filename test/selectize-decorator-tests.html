@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>seed-element</title>
+
+    <!-- Import dependencies -->
+    <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../../polymer/polymer.html">
+    <link rel="import" href="../selectize-decorator.html">
+</head>
+
+<body>
+
+<p>
+    <selectize-decorator id="typicalSelectize">
+        <select>
+            <option>1 test</option>
+            <option>2 test 2</option>
+            <option>3 3 test</option>
+        </select>
+    </selectize-decorator>
+</p>
+
+<script>
+    suite('<selectize-decorator>', function() {
+        test('exists', function() {
+            assert.isNotNull(document.getElementById('typicalSelectize'));
+        });
+
+        test('selectiez instantiated', function() {
+            assert.equal(1, document.querySelectorAll('.selectize-control').length);
+        });
+
+        //todo: test that options are working
+    });
+</script>
+
+</body>
+</html>
