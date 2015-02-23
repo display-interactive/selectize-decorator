@@ -15,7 +15,7 @@
     ],
     "keywords": ["Polymer", "web-components", "selectize", "html", "select", "selectbox"],
     "dependencies": {
-        "polymer": "Polymer/polymer#master",
+        "polymer": "Polymer/polymer#^0.5",
         "jquery": "latest",
         "selectize": "latest"
     },
