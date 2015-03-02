@@ -37,6 +37,7 @@
         "lock-optgroup-order": false,
         "copy-classes-to-dropdown": true,
 
+
         load: null,
         score: null,
         "on-initialize": null,
@@ -54,6 +55,9 @@
         "on-type": null,
         "on-load": null,
 
+        ajaxOptions: null,
+        ajaxOptionsRoot: null,
+        ajaxOptionsDataType: null,
 
         /**
          * Constructor
@@ -112,8 +116,39 @@
                 onType: this["on-type"],
                 onLoad: this["on-load"]
             };
+            if (null !== this.ajaxOptions) {
+                this.buildAjaxOptions(field, options)
+            } else {
+                $(field).selectize(options);
+            }
+        },
 
-            $(field).selectize(options);
+        /**
+         * Build select from ajax url
+         * @param field
+         * @param options
+         */
+        buildAjaxOptions: function(field, options) {
+            var that = this;
+            var config = {
+                url: this.ajaxOptions,
+                type: 'GET',
+                success: function(data) {
+                    if (that.ajaxOptionsRoot) {
+                        options.options = data[that.ajaxOptionsRoot];
+                    } else {
+                        options.options = data;
+                    }
+
+                    $(field).selectize(options);
+                }
+            };
+
+            if (this.ajaxOptionsDataType) {
+                config.dataType = this.ajaxOptionsDataType;
+            }
+
+            jQuery.ajax(config);
         }
     }
 }(jQuery));
