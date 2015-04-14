@@ -164,7 +164,7 @@
          * Constructor
          */
         ready: function() {
-            var field = this.querySelector('select, input');
+            var field = Polymer.dom(this).querySelector('select, input');
             var options = {
                 delimiter: this.delimiter,
                 diacritics: this.diacritics,
@@ -178,7 +178,7 @@
                 maxItems: this.maxItems,
                 hideSelected: this.hideSelected,
                 closeAfterSelect: this.closeAfterSelect,
-                allowEmptyOption: this.allowEmptyOption,
+                alglowEmptyOption: this.allowEmptyOption,
                 scrollDuration: this.scrollDuration,
                 loadThrottle: this.loadThrottle,
                 loadingClass: this.loadingClass,
