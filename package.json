@@ -4,12 +4,12 @@
     },
     "description": "Selectize decorator with polymer",
     "devDependencies": {
-        "web-component-tester": "~2.0.1"
+        "web-component-tester": "*"
     },
     "name": "selectize-decorator",
     "repository": {
         "type": "git",
         "url": "https://github.com/display-interactive/selectize-decorator.git"
     },
-    "version": "0.0.1"
+    "version": "0.2"
 }

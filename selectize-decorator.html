@@ -2,13 +2,238 @@
 <link rel="stylesheet" href="../selectize/dist/css/selectize.bootstrap3.css" />
 <script src="../jquery/dist/jquery.min.js"></script>
 <script src="../selectize/dist/js/standalone/selectize.min.js"></script>
-<script src="selectize-decorator.js"></script>
 
-<polymer-element name="selectize-decorator" attributes="delimiter diacritics create create-on-blur create-filter highlight persist open-on-focus max-options max-items hide-selected close-after-select allow-empty-option scroll-duration load-throttle loading-class preload dropdown-parent add-precedence select-on-tab options optgroups data-attr value-field optgroup-value-field label-field optgroup-label-field optgroup-field sort-field search-field search-conjunction lock-optgroup-order copy-classes-to-dropdown load score on-initialize on-focus on-blur on-change on-item-add on-item-remove on-clear on-delete on-option-add on-option-remove on-dropdown-open on-dropdown-close on-type on-load ajaxOptions ajaxOptionsRoot ajaxOptionsDataType">
+<dom-module name="selectize-decorator">
     <template>
         <content></content>
     </template>
-    <script>
-        Polymer('selectize-decorator', selectizeDecorator);
-    </script>
-</polymer-element>
+</dom-module>
+<script>
+    Polymer({
+        is: 'selectize-decorator',
+
+        /** @see https://github.com/brianreavis/selectize.js/blob/master/docs/usage.md */
+        properties: {
+            delimiter: {
+                type: 'String',
+                value: ','
+            },
+            diacritics: {
+                type: 'Boolean',
+                value: true
+            },
+            create: {
+                type: 'Boolean',
+                value: false
+            },
+            createOnBlur: {
+                type: 'Boolean',
+                value: false
+            },
+            createFilter: {
+                type: 'String',
+                value: null
+            },
+            highlight: {
+                type: 'Boolean',
+                value: true
+            },
+            persist: {
+                type: 'Boolean',
+                value: true
+            },
+            openOnFocus: {
+                type: 'Boolean',
+                value: true
+            },
+            maxOptions: {
+                type: 'Number',
+                value: 1000
+            },
+            maxItems: {
+                type: 'Number',
+                value: 1
+            },
+            hideSelected: {
+                type: 'Boolean',
+                value: true
+            },
+            closeAfterSelect: {
+                type: 'Boolean',
+                value: false
+            },
+            allowEmptyOption: {
+                type: 'Boolean',
+                value: false
+            },
+            scrollDuration: {
+                type: 'Number',
+                value: 60
+            },
+            loadThrottle: {
+                type: 'Number',
+                value: 300
+            },
+            loadingClass: {
+                type: 'String',
+                value: 'loading'
+            },
+            preload: {
+                type: 'String', //see if it works
+                value: false
+            },
+            dropdownParent: {
+                type: 'String',
+                value: null
+            },
+            addPrecedence: {
+                type: 'Boolean',
+                value: false
+            },
+            selectOnTab: {
+                type: 'Boolean',
+                value: false
+            },
+            options: {
+                type: 'Array',
+                value: []
+            },
+            optgroups: {
+                type: 'Array',
+                value: []
+            },
+            dataAttr: {
+                type: 'String',
+                value: 'data-data'
+            },
+            valueField: {
+                type: 'String',
+                value: 'value'
+            },
+            optgroupValueField: {
+                type: 'String',
+                value: 'value'
+            },
+            labelField: {
+                type: 'String',
+                value: 'text'
+            },
+            optgroupLabelField: {
+                type: 'String',
+                value: 'label'
+            },
+            optgroupField: {
+                type: 'String',
+                value: 'optgroup'
+            },
+            sortField: {
+                type: 'String',
+                value: '$order'
+            },
+            searchField: {
+                type: 'Array',
+                value: ['text']
+            },
+            searchConjunction: {
+                type: 'String',
+                value: 'and'
+            },
+            lockOptgroupOrder: {
+                type: 'Boolean',
+                value: false
+            },
+            copyClassesToDropdown: {
+                type: 'Boolean',
+                value: true
+            },
+            ajaxOptions: {
+                type: 'String',
+                value: null
+            },
+            ajaxOptionsRoot: {
+                type: 'String',
+                value: null
+            },
+            ajaxOptionsDataType: {
+                type: 'String',
+                value: null
+            }
+        },
+
+        /**
+         * Constructor
+         */
+        ready: function() {
+            var field = this.querySelector('select, input');
+            var options = {
+                delimiter: this.delimiter,
+                diacritics: this.diacritics,
+                create: this.create,
+                createOnBlur: this.createOnBlur,
+                createFilter: this.createFilter,
+                highlight: this.highlight,
+                persist: this.persist,
+                openOnFocus: this.openOnFocus,
+                maxOptions: this.maxOptions,
+                maxItems: this.maxItems,
+                hideSelected: this.hideSelected,
+                closeAfterSelect: this.closeAfterSelect,
+                allowEmptyOption: this.allowEmptyOption,
+                scrollDuration: this.scrollDuration,
+                loadThrottle: this.loadThrottle,
+                loadingClass: this.loadingClass,
+                preload: this.preload,
+                dropdownParent: this.dropdownParent,
+                addPrecedence: this.addPrecedence,
+                selectOnTab: this.selectOnTab,
+                options: this.options,
+                optgroups: this.optgroups,
+                dataAttr: this.dataAttr,
+                valueField: this.valueField,
+                optgroupValueField: this.optgroupValueField,
+                labelField: this.labelField,
+                optgroupLabelField: this.optgroupLabelField,
+                optgroupField: this.optgroupField,
+                sortField: this.sortField,
+                searchField: this.searchField,
+                searchConjunction: this.searchConjunction,
+                lockOptgroupOrder: this.lockOptgroupOrder,
+                copyClassesToDropdown: this.copyClassesToDropdown,
+            };
+
+            if (null !== this.ajaxOptions) {
+                this.buildAjaxOptions(field, options)
+            } else {
+                jQuery(field).selectize(options);
+            }
+        },
+
+        /**
+         * Build select from ajax url
+         * @param field
+         * @param options
+         */
+        buildAjaxOptions: function(field, options) {
+            var that = this;
+            var config = {
+                url: this.ajaxOptions,
+                type: 'GET',
+                success: function(data) {
+                    if (that.ajaxOptionsRoot) {
+                        options.options = data[that.ajaxOptionsRoot];
+                    } else {
+                        options.options = data;
+                    }
+
+                    jQuery(field).selectize(options);
+                }
+            };
+
+            if (this.ajaxOptionsDataType) {
+                config.dataType = this.ajaxOptionsDataType;
+            }
+
+            jQuery.ajax(config);
+        }
+    });
+</script>

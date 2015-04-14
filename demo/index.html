@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <meta charset="utf-8">
     <title>selectize demo</title>
-    <script src="../webcomponentsjs/webcomponents.js"></script>
-    <link rel="import" href="selectize-decorator.html">
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../selectize-decorator.html">
     <style>
         #container {
             padding-top: 15%;
@@ -33,12 +33,12 @@
                 </select>
             </selectize-decorator>
         </p>
-        <p>
-            <selectize-decorator>
-                <input type="text" name="bar" />
-            </selectize-decorator>
-        </p>
     </form>
 </div>
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        document.body.removeAttribute('unresolved');
+    }, false);
+</script>
 </body>
 </html>
