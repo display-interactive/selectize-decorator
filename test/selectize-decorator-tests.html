@@ -35,19 +35,19 @@
     suite('<selectize-decorator>', function() {
         test('exists', function() {
             assert.isNotNull(document.getElementById('typicalSelectize'));
+            assert.isNotNull(document.getElementById('ajaxLoad'));
         });
 
         test('selectize instantiated', function() {
-            assert.equal(1, document.querySelectorAll('.selectize-control').length);
+            assert.equal(1, document.querySelectorAll('#typicalSelectize .selectize-control').length);
         });
 
         var el = document.querySelector('#ajaxLoad > select');
         test('ajaxOptions', function(done) {
-            assert.isUndefined(el.selectize);
             setTimeout(function() {
                 assert.isTrue(Object.keys(el.selectize.options).length > 0);
                 done();
-            }, 1500)
+            }, 2000)
         });
 
         //todo: test that options are working
