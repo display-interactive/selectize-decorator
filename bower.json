@@ -15,7 +15,7 @@
     ],
     "keywords": ["Polymer", "web-components", "selectize", "html", "select", "selectbox"],
     "dependencies": {
-        "polymer": "Polymer/polymer#^1.1.*",
+        "polymer": "Polymer/polymer#^1.2.*",
         "ugo-jquery-deps": "https://github.com/display-interactive/ugo-jquery-deps.git",
         "selectize": "latest"
     },
