@@ -1,0 +1,25 @@
+{
+    "name": "selectize-decorator",
+    "version": "0.2",
+    "authors": [
+        "Florian Roy"
+    ],
+    "description": "Selectize decorator with polymer",
+    "main": "element/*",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "keywords": ["Polymer", "web-components", "selectize", "html", "select", "selectbox"],
+    "dependencies": {
+        "polymer": "Polymer/polymer#^1.2.*",
+        "ugo-jquery-deps": "https://github.com/display-interactive/ugo-jquery-deps.git",
+        "selectize": "latest"
+    },
+    "devDependencies": {
+        "web-component-tester": "*"
+    }
+}
