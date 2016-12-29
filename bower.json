@@ -5,7 +5,7 @@
         "Florian Roy"
     ],
     "description": "Selectize decorator with polymer",
-    "main": "element/*",
+    "main": "selectize-decorator.html",
     "ignore": [
         "**/.*",
         "node_modules",
